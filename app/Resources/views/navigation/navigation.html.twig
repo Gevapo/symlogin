@@ -1,22 +1,41 @@
-<div class="nav-wrapper clearFix">
-    <ul>
-
-        <li><a href="{{ path('homepage') }}">Home</a></li>
-
-
-
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <li><a href="{{ path('logout') }}">Logout</a></li>
-            {% if is_granted('ROLE_ADMIN') %}
-                <li><a href="{{ path('admin') }}">Admin</a></li>
+<nav class="" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {% if user %}
+                    <img src="{{ user.getAvatarUrl({size: 30}) }}" alt="Your Avatar">
+                {% endif %}
+                {{ app.user.username }}
+            {% else %}
+                Logo
             {% endif %}
-        {% else %}
-            <li><a href={{ path('login') }}>Login</a></li>
-            <li><a href={{ path('user_registration') }}>Register</a></li>
-        {% endif %}
+        </a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="{{ path('homepage') }}">Home</a></li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li><a href="{{ path('logout') }}">Logout</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><a href="{{ path('admin') }}">Admin</a></li>
+                {% endif %}
+            {% else %}
+                <li><a href={{ path('login') }}>Login</a></li>
+                <li><a href={{ path('user_registration') }}>Register</a></li>
+            {% endif %}
+        </ul>
 
-
-    </ul>
-
-</div>
+        <ul id="nav-mobile" class="side-nav">
+            <li><a href="{{ path('homepage') }}">Home</a></li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li><a href="{{ path('logout') }}">Logout</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><a href="{{ path('admin') }}">Admin</a></li>
+                {% endif %}
+            {% else %}
+                <li><a href={{ path('login') }}>Login</a></li>
+                <li><a href={{ path('user_registration') }}>Register</a></li>
+            {% endif %}
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
 
