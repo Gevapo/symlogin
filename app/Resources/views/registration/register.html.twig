@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+
+    <h3>Register</h3>
+
+    {% if is_granted('ROLE_USER') %}
+        <a href="#">is ROLE_USER</a>
+    {% endif %}
+
+    {% if is_granted('ROLE_USER') %}
+        <a href="#">is ROLE_USER</a>
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword.first) }}
+    {{ form_row(form.plainPassword.second) }}
+    {{ form_row(form.termsAccepted) }}
+    <button type="submit">Register!</button>
+    {{ form_end(form) }}
+
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

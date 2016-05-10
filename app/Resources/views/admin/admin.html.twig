@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}ADMINISTRATOR{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+
+    <h3>Administrator's page</h3>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <p>Username: {{ app.user.username }}
+
+            {% if is_granted('ROLE_ADMIN') %}
+                &nbsp;is ROLE_ADMIN
+            {% endif %}
+
+            {% if is_granted('ROLE_USER') %}
+                &nbsp;is ROLE_USER
+            {% endif %}
+        </p>
+    {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

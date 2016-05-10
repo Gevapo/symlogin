@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+
+    <h3>Homepage</h3>
+
+    {% if user %}
+        <img src="{{ user.getAvatarUrl({size: 30}) }}" alt="Your Avatar">
+    {% endif %}
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <p>Username: {{ app.user.username }}
+
+            {% if is_granted('ROLE_ADMIN') %}
+                &nbsp;is ROLE_ADMIN
+            {% endif %}
+
+            {% if is_granted('ROLE_USER') %}
+                &nbsp;is ROLE_USER
+            {% endif %}
+        </p>
+    {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}{% endblock %}
